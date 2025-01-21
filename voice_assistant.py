@@ -1,25 +1,22 @@
 import speech_recognition as sr
 import pyttsx3
 
-# Initialize the recognizer and text-to-speech engine
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
 
-# Function to make the assistant speak
 def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-# Function to recognize speech
 def recognize_speech():
     with sr.Microphone() as source:
         print("Listening... Speak now!")
-        recognizer.adjust_for_ambient_noise(source)  # Reduce background noise
-        audio = recognizer.listen(source)  # Capture audio
+        recognizer.adjust_for_ambient_noise(source)  
+        audio = recognizer.listen(source)  
 
     try:
         print("Recognizing...")
-        text = recognizer.recognize_google(audio)  # Convert speech to text
+        text = recognizer.recognize_google(audio) 
         print(f"You said: {text}")
         return text
     except sr.UnknownValueError:
@@ -29,7 +26,6 @@ def recognize_speech():
         print("Could not request results. Check your internet connection.")
         return None
 
-# Main function
 def main():
     speak("Hello! How can I assist you today?")
     while True:
